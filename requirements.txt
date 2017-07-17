@@ -1,0 +1,4 @@
+pycrypto
+keyring
+pkcs7
+requests
