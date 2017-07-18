@@ -6,13 +6,14 @@ import Crypto.Random
 import os
 import keyring
 from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
 from pkcs7 import PKCS7Encoder
 
 encoder = PKCS7Encoder()
 
-PRIVATE_KEY = Crypto.Random.OSRNG.posix.new().read(AES.block_size)
+PRIVATE_KEY = get_random_bytes(32)
 
-IV = os.urandom(16)
+IV = get_random_bytes(16)
 
 keyring_key = keyring.get_password("keepasshttplib", "Key2")
 
@@ -29,7 +30,7 @@ aes = AES.new(PRIVATE_KEY, AES.MODE_CBC, IV)
 
 padded_iv = encoder.encode(BASE64_IV)
 
-encrypted = aes.encrypt(padded_iv)
+encrypted = aes.encrypt(padded_iv.encode())
 
 VERIFIER = base64.b64encode(encrypted).decode()
 

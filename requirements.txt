@@ -1,4 +1,4 @@
-pycrypto
+pycryptodome
 keyring
 pkcs7
 requests

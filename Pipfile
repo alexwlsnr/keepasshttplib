@@ -4,3 +4,8 @@ verify_ssl = true
 
 [packages]
 ez-setup = "*"
+pycryptodomex = "*"
+pycryptodome = "*"
+requests = "*"
+keyring = "*"
+pkcs7 = "*"
